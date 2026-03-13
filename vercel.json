@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/salary.js": {
+      "maxDuration": 30
+    }
+  }
+}
