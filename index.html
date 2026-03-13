@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Google Analytics -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CheckSalary.us — Free AI Salary Intelligence</title>
+<meta name="description" content="Instantly check any US salary with AI. Real-time data from BLS, Glassdoor, LinkedIn. Free, no signup.">
+<!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXPTL1943Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -8,492 +13,215 @@
   gtag('js', new Date());
   gtag('config', 'G-EXPTL1943Q');
 </script>
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SalaryCheck — Free US Salary Benchmarking</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --ink: #0f0e0d;
-    --paper: #f7f4ee;
-    --paper2: #ede9e0;
-    --accent: #d45a2a;
-    --accent2: #2a6dd4;
-    --muted: #7a7468;
-    --border: #d8d3c8;
-    --green: #1a7a4a;
-    --gold: #c8922a;
+    --ink: #0f0e0d; --paper: #f7f4ee; --paper2: #ede9e0;
+    --accent: #d45a2a; --accent2: #2a6dd4;
+    --muted: #7a7468; --border: #d8d3c8;
+    --green: #1a7a4a; --gold: #c8922a;
     --serif: 'Instrument Serif', Georgia, serif;
     --sans: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', monospace;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
 
-  body {
-    font-family: var(--sans);
-    background: var(--paper);
-    color: var(--ink);
-    min-height: 100vh;
-    overflow-x: hidden;
-  }
-
-  /* ── HEADER ── */
+  /* HEADER */
   header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 18px 48px;
-    border-bottom: 1px solid var(--border);
-    background: var(--paper);
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px; border-bottom: 1px solid var(--border);
+    background: var(--paper); position: sticky; top: 0; z-index: 100;
   }
-  .logo {
-    font-family: var(--serif);
-    font-size: 22px;
-    letter-spacing: -0.3px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+  .logo { font-family: var(--serif); font-size: 22px; display: flex; align-items: center; gap: 6px; }
+  .logo .dot { color: var(--accent); font-style: italic; }
+  .ai-badge {
+    display: inline-flex; align-items: center; gap: 5px; font-size: 11px;
+    font-weight: 600; letter-spacing: 0.5px; background: #f0ede6;
+    border: 1px solid var(--border); color: var(--accent); padding: 4px 10px; border-radius: 20px;
   }
-  .logo span.dot { color: var(--accent); font-style: italic; }
-  nav { display: flex; gap: 28px; align-items: center; }
-  nav a {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--muted);
-    text-decoration: none;
-    transition: color .2s;
-  }
+  nav { display: flex; gap: 24px; align-items: center; }
+  nav a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .2s; }
   nav a:hover { color: var(--ink); }
-  .nav-cta {
-    background: var(--ink);
-    color: var(--paper) !important;
-    padding: 8px 18px;
-    border-radius: 40px;
-    font-weight: 500 !important;
-    font-size: 13px !important;
-  }
-  .nav-cta:hover { background: var(--accent) !important; }
+  .nav-cta { background: var(--ink); color: var(--paper) !important; padding: 8px 18px; border-radius: 40px; font-weight: 500 !important; font-size: 13px !important; }
 
-  /* ── HERO ── */
-  .hero {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 80px 24px 48px;
-    text-align: center;
-  }
+  /* HERO */
+  .hero { max-width: 900px; margin: 0 auto; padding: 72px 24px 40px; text-align: center; }
   .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--accent);
-    background: rgba(212,90,42,0.08);
-    border: 1px solid rgba(212,90,42,0.2);
-    padding: 5px 14px;
-    border-radius: 40px;
-    margin-bottom: 28px;
-    letter-spacing: 0.3px;
-    text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 8px; font-size: 12px;
+    font-weight: 500; color: var(--accent); background: rgba(212,90,42,0.07);
+    border: 1px solid rgba(212,90,42,0.18); padding: 6px 16px; border-radius: 40px;
+    margin-bottom: 28px; letter-spacing: 0.3px;
   }
-  .hero-badge::before { content: "●"; font-size: 8px; }
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(42px, 6vw, 68px);
-    line-height: 1.05;
-    letter-spacing: -1px;
-    margin-bottom: 20px;
-    color: var(--ink);
-  }
+  .pulse { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; display: inline-block; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+  h1 { font-family: var(--serif); font-size: clamp(40px,6vw,66px); line-height: 1.05; letter-spacing: -1px; margin-bottom: 18px; }
   h1 em { font-style: italic; color: var(--accent); }
-  .hero-sub {
-    font-size: 17px;
-    color: var(--muted);
-    line-height: 1.6;
-    max-width: 560px;
-    margin: 0 auto 44px;
-    font-weight: 300;
-  }
+  .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.65; max-width: 560px; margin: 0 auto 28px; font-weight: 300; }
+  .powered-by { font-size: 12px; color: var(--muted); margin-bottom: 32px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .powered-by strong { color: var(--ink); font-weight: 600; }
+  .powered-by::before, .powered-by::after { content: "—"; color: var(--border); }
 
-  /* ── SEARCH BOX ── */
+  /* SEARCH CARD */
   .search-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 32px;
-    box-shadow: 0 4px 40px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04);
-    max-width: 720px;
-    margin: 0 auto;
+    background: #fff; border: 1px solid var(--border); border-radius: 20px;
+    padding: 28px 28px 20px; box-shadow: 0 4px 40px rgba(0,0,0,0.07);
+    max-width: 760px; margin: 0 auto;
   }
-  .search-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr 120px 1fr;
-    gap: 12px;
-    align-items: end;
-  }
+  .search-row { display: grid; grid-template-columns: 1fr 1fr 130px 1fr; gap: 12px; align-items: end; margin-bottom: 16px; }
   .field-group { display: flex; flex-direction: column; gap: 6px; }
-  .field-group label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
-    color: var(--muted);
+  .field-group label { font-size: 11px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); }
+  .field-group input, .field-group select {
+    font-family: var(--sans); font-size: 15px; color: var(--ink);
+    background: var(--paper); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 12px 14px; outline: none;
+    transition: border-color .2s, box-shadow .2s; appearance: none;
   }
-  .field-group input,
-  .field-group select {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--ink);
-    background: var(--paper);
-    border: 1.5px solid var(--border);
-    border-radius: 10px;
-    padding: 12px 14px;
-    outline: none;
-    transition: border-color .2s, box-shadow .2s;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  .field-group input:focus,
-  .field-group select:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(212,90,42,0.1);
-    background: #fff;
+  .field-group input:focus, .field-group select:focus {
+    border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,90,42,0.1); background: #fff;
   }
   .field-group input::placeholder { color: #b5afa6; }
   .select-wrap { position: relative; }
-  .select-wrap::after {
-    content: "▾";
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
-    color: var(--muted);
-    pointer-events: none;
-  }
+  .select-wrap::after { content: "▾"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); pointer-events: none; }
   .btn-search {
-    font-family: var(--sans);
-    font-size: 15px;
-    font-weight: 600;
-    background: var(--accent);
-    color: white;
-    border: none;
-    border-radius: 10px;
-    padding: 13px 20px;
-    cursor: pointer;
-    transition: background .2s, transform .1s;
-    white-space: nowrap;
+    font-family: var(--sans); font-size: 15px; font-weight: 600;
+    background: var(--accent); color: white; border: none; border-radius: 10px;
+    padding: 13px 16px; cursor: pointer; transition: background .2s, transform .1s;
+    white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;
   }
   .btn-search:hover { background: #c04d22; }
   .btn-search:active { transform: scale(0.98); }
-
-  .popular-searches {
-    margin-top: 18px;
-    font-size: 13px;
-    color: var(--muted);
-    text-align: left;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-  }
-  .popular-searches span { font-weight: 500; color: var(--ink); }
-  .pill {
-    background: var(--paper2);
-    border: 1px solid var(--border);
-    border-radius: 30px;
-    padding: 4px 12px;
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--ink);
-    cursor: pointer;
-    transition: background .15s, border-color .15s;
-    white-space: nowrap;
-  }
+  .btn-search:disabled { background: var(--border); cursor: not-allowed; }
+  .pills-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .pills-label { font-size: 12px; color: var(--muted); font-weight: 500; white-space: nowrap; }
+  .pill { background: var(--paper2); border: 1px solid var(--border); border-radius: 30px; padding: 5px 13px; font-size: 12px; color: var(--ink); cursor: pointer; transition: all .15s; white-space: nowrap; }
   .pill:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-  /* ── RESULTS ── */
-  #results-section {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px 80px;
-    display: none;
-  }
-  #results-section.visible { display: block; animation: fadeUp .4s ease; }
-  @keyframes fadeUp { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform: translateY(0); } }
+  /* THINKING */
+  #ai-thinking { display: none; max-width: 760px; margin: 24px auto 0; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  #ai-thinking.show { display: block; animation: fadeUp .3s ease; }
+  .thinking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+  .thinking-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 1.2s infinite; }
+  .thinking-dot:nth-child(2) { animation-delay: .2s; }
+  .thinking-dot:nth-child(3) { animation-delay: .4s; }
+  .thinking-label { font-size: 13px; font-weight: 500; color: var(--muted); }
+  .thinking-steps { display: flex; flex-direction: column; gap: 8px; }
+  .thinking-step { font-size: 13px; color: var(--muted); padding: 8px 12px; background: var(--paper); border-radius: 8px; display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(4px); transition: opacity .4s ease, transform .4s ease; }
+  .thinking-step.visible { opacity: 1; transform: translateY(0); }
 
-  .results-header {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 28px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  .results-title {
-    font-family: var(--serif);
-    font-size: 28px;
-    line-height: 1.1;
-    letter-spacing: -0.3px;
-  }
-  .results-title em { font-style: italic; color: var(--accent); }
-  .results-meta { font-size: 13px; color: var(--muted); }
+  /* ERROR */
+  .error-card { background: #fff3f0; border: 1px solid #f5c4b3; border-radius: 12px; padding: 20px 24px; margin: 20px auto; max-width: 760px; font-size: 14px; color: #8b3a1a; display: none; }
+  .error-card.show { display: block; }
 
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-bottom: 28px;
+  /* RESULTS */
+  #results-section { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; display: none; }
+  #results-section.visible { display: block; animation: fadeUp .5s ease; }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+
+  .ai-response-card {
+    background: #fff; border: 1px solid var(--border); border-radius: 16px;
+    padding: 28px; margin-bottom: 20px; position: relative; overflow: hidden;
   }
-  .stat-card {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 24px;
-    position: relative;
-    overflow: hidden;
+  .ai-response-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent2));
   }
-  .stat-card.highlight { border-color: var(--accent); background: rgba(212,90,42,0.03); }
-  .stat-card.highlight::before {
-    content: "MEDIAN";
-    position: absolute;
-    top: 12px;
-    right: 12px;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--accent);
-    background: rgba(212,90,42,0.1);
-    padding: 3px 7px;
-    border-radius: 20px;
-  }
+  .ai-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
+  .ai-avatar { width: 32px; height: 32px; background: var(--ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; flex-shrink: 0; }
+  .ai-label { font-size: 13px; font-weight: 600; }
+  .ai-sublabel { font-size: 11px; color: var(--muted); }
+
+  .salary-hero { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+  .salary-stat { background: var(--paper); border-radius: 12px; padding: 20px; text-align: center; border: 1px solid var(--border); }
+  .salary-stat.main { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .salary-stat.main .stat-label, .salary-stat.main .stat-note { color: #a09890; }
   .stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
-  .stat-value {
-    font-family: var(--serif);
-    font-size: 34px;
-    letter-spacing: -1px;
-    line-height: 1;
-    margin-bottom: 4px;
-  }
-  .stat-sub { font-size: 12px; color: var(--muted); }
+  .stat-amount { font-family: var(--serif); font-size: 32px; letter-spacing: -1px; line-height: 1; margin-bottom: 4px; }
+  .stat-note { font-size: 11px; color: var(--muted); }
 
-  /* salary bar */
-  .salary-bar-section {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 28px;
-    margin-bottom: 20px;
-  }
-  .bar-title { font-size: 14px; font-weight: 600; margin-bottom: 20px; }
-  .bar-track {
-    position: relative;
-    height: 10px;
-    background: var(--paper2);
-    border-radius: 10px;
-    margin-bottom: 8px;
-  }
-  .bar-fill {
-    position: absolute;
-    left: 0; top: 0; height: 100%;
-    border-radius: 10px;
-    transition: width 1s cubic-bezier(.16,1,.3,1);
-  }
-  .bar-fill.green { background: linear-gradient(90deg, #c8e6d4, var(--green)); }
-  .bar-fill.amber { background: linear-gradient(90deg, #f5d89a, var(--gold)); }
-  .bar-fill.blue  { background: linear-gradient(90deg, #b8d4f5, var(--accent2)); }
-  .bar-labels { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); }
+  .pct-section { margin-bottom: 24px; }
+  .pct-title { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .pct-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .pct-lbl { font-size: 12px; font-weight: 600; color: var(--muted); width: 38px; flex-shrink: 0; }
+  .pct-track { flex: 1; height: 8px; background: var(--paper2); border-radius: 8px; overflow: hidden; }
+  .pct-fill { height: 100%; border-radius: 8px; transition: width 1.2s cubic-bezier(.16,1,.3,1); width: 0%; }
+  .pct-val { font-size: 13px; font-weight: 600; width: 80px; text-align: right; flex-shrink: 0; font-family: var(--mono); }
 
-  /* percentile viz */
-  .percentile-viz {
-    background: #fff;
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 28px;
-    margin-bottom: 20px;
-  }
-  .pct-row {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 12px;
-  }
-  .pct-label { font-size: 12px; font-weight: 600; color: var(--muted); width: 40px; flex-shrink: 0; }
-  .pct-bar-track { flex: 1; height: 8px; background: var(--paper2); border-radius: 8px; }
-  .pct-bar-fill { height: 100%; border-radius: 8px; background: var(--accent); transition: width 1.2s cubic-bezier(.16,1,.3,1); }
-  .pct-val { font-size: 13px; font-weight: 600; width: 80px; text-align: right; flex-shrink: 0; }
+  .comp-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+  .comp-chip { background: var(--paper); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .comp-chip-label { font-size: 11px; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .comp-chip-val { font-family: var(--serif); font-size: 22px; letter-spacing: -0.5px; }
+  .comp-chip-val.green { color: var(--green); }
 
-  /* share card */
-  .share-card {
-    background: var(--ink);
-    color: var(--paper);
-    border-radius: 14px;
-    padding: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  .share-text h3 { font-family: var(--serif); font-size: 20px; margin-bottom: 4px; }
+  .ai-narrative { font-size: 15px; line-height: 1.75; color: var(--ink); border-top: 1px solid var(--border); padding-top: 20px; }
+  .ai-narrative p { margin-bottom: 12px; }
+  .ai-narrative p:last-child { margin-bottom: 0; }
+
+  .sources-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .sources-label { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; }
+  .source-chip { font-size: 11px; padding: 3px 10px; background: var(--paper); border: 1px solid var(--border); border-radius: 20px; color: var(--muted); }
+
+  .share-card { background: var(--ink); color: var(--paper); border-radius: 14px; padding: 24px 28px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+  .share-text h3 { font-family: var(--serif); font-size: 19px; margin-bottom: 3px; }
   .share-text p { font-size: 13px; color: #a09890; }
-  .share-btns { display: flex; gap: 10px; flex-wrap: wrap; }
-  .share-btn {
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    padding: 9px 18px;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 1.5px solid rgba(255,255,255,0.2);
-    background: transparent;
-    color: white;
-    transition: background .15s;
-  }
+  .share-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .share-btn { font-family: var(--sans); font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; cursor: pointer; border: 1.5px solid rgba(255,255,255,0.2); background: transparent; color: white; transition: background .15s; }
   .share-btn:hover { background: rgba(255,255,255,0.1); }
   .share-btn.primary { background: var(--accent); border-color: var(--accent); }
-  .share-btn.primary:hover { background: #c04d22; }
 
-  /* ── AD PLACEHOLDER ── */
-  .ad-unit {
-    background: var(--paper2);
-    border: 1px dashed var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 12px;
-    color: var(--muted);
-    font-style: italic;
-  }
+  .ad-unit { background: var(--paper2); border: 1px dashed var(--border); border-radius: 10px; padding: 18px; text-align: center; margin-bottom: 20px; font-size: 12px; color: var(--muted); font-style: italic; }
 
-  /* ── STATS STRIP ── */
-  .stats-strip {
-    background: var(--ink);
-    color: var(--paper);
-    padding: 36px 48px;
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    flex-wrap: wrap;
-  }
+  .stats-strip { background: var(--ink); color: var(--paper); padding: 36px 48px; display: flex; justify-content: center; gap: 80px; flex-wrap: wrap; }
   .strip-item { text-align: center; }
-  .strip-num { font-family: var(--serif); font-size: 38px; color: var(--accent); letter-spacing: -1px; }
-  .strip-desc { font-size: 13px; color: #a09890; margin-top: 2px; }
+  .strip-num { font-family: var(--serif); font-size: 36px; color: var(--accent); letter-spacing: -1px; }
+  .strip-desc { font-size: 12px; color: #a09890; margin-top: 2px; }
 
-  /* ── HOW IT WORKS ── */
-  .how-section { max-width: 860px; margin: 0 auto; padding: 72px 24px; }
-  .section-eyebrow {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 14px;
-  }
-  .section-title { font-family: var(--serif); font-size: 36px; letter-spacing: -0.5px; margin-bottom: 48px; }
+  .how-section { max-width: 900px; margin: 0 auto; padding: 64px 24px; }
+  .section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+  .section-title { font-family: var(--serif); font-size: 34px; letter-spacing: -0.5px; margin-bottom: 44px; }
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
-  .step { }
-  .step-num {
-    font-family: var(--serif);
-    font-size: 52px;
-    color: var(--border);
-    line-height: 1;
-    margin-bottom: 12px;
-    letter-spacing: -2px;
-  }
-  .step h3 { font-size: 17px; font-weight: 600; margin-bottom: 8px; }
+  .step-num { font-family: var(--serif); font-size: 48px; color: var(--border); line-height: 1; margin-bottom: 10px; letter-spacing: -2px; }
+  .step h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
   .step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 32px 48px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 13px;
-    color: var(--muted);
-    flex-wrap: wrap;
-    gap: 12px;
-  }
+  footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
   footer a { color: var(--muted); text-decoration: none; }
-  footer a:hover { color: var(--ink); }
 
-  /* ── LOADING STATE ── */
-  .loading-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(247,244,238,0.85);
-    backdrop-filter: blur(4px);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 16px;
-  }
-  .loading-overlay.show { display: flex; }
-  .spinner {
-    width: 40px; height: 40px;
-    border: 3px solid var(--border);
-    border-top-color: var(--accent);
-    border-radius: 50%;
-    animation: spin .8s linear infinite;
-  }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .loading-text { font-family: var(--serif); font-size: 18px; color: var(--muted); font-style: italic; }
-
-  /* ── RESPONSIVE ── */
   @media (max-width: 700px) {
     header { padding: 14px 20px; }
     nav { display: none; }
-    .hero { padding: 48px 20px 32px; }
+    .hero { padding: 48px 20px 28px; }
     .search-card { padding: 20px; }
     .search-row { grid-template-columns: 1fr; }
-    .stats-grid { grid-template-columns: 1fr; }
+    .salary-hero, .comp-row { grid-template-columns: 1fr; }
     .steps { grid-template-columns: 1fr; }
-    .stats-strip { gap: 40px; padding: 32px 24px; }
+    .stats-strip { gap: 36px; padding: 28px 20px; }
     footer { padding: 24px 20px; flex-direction: column; }
   }
 </style>
 </head>
 <body>
 
-<!-- LOADING -->
-<div class="loading-overlay" id="loader">
-  <div class="spinner"></div>
-  <div class="loading-text">Crunching the numbers…</div>
-</div>
-
-<!-- HEADER -->
 <header>
-  <div class="logo">SalaryCheck<span class="dot">.</span></div>
+  <div style="display:flex;align-items:center;gap:12px">
+    <div class="logo">CheckSalary<span class="dot">.</span></div>
+    <div class="ai-badge">✦ AI Powered</div>
+  </div>
   <nav>
     <a href="#">Explore Jobs</a>
-    <a href="#">Cost of Living</a>
-    <a href="#">Blog</a>
-    <a href="#" class="nav-cta">Browse All Salaries</a>
+    <a href="#how">How It Works</a>
+    <a href="#" class="nav-cta">Browse Salaries</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-badge">Free · No signup · Updated 2025</div>
-  <h1>Are you being paid<br><em>what you're worth?</em></h1>
-  <p class="hero-sub">Instantly benchmark your salary against real US data. Free forever. No signup needed. Based on BLS and live job market data.</p>
+  <div class="hero-badge"><span class="pulse"></span> Live AI · Real-time salary data</div>
+  <h1>Know exactly what<br>you're <em>worth</em> — right now.</h1>
+  <p class="hero-sub">Claude AI searches the web in real time — BLS, Glassdoor, LinkedIn, Indeed — and gives you the most current salary data for any US job. Free. No signup.</p>
+  <div class="powered-by">Powered by <strong>Claude AI</strong> with live web search</div>
 
-  <!-- SEARCH CARD -->
   <div class="search-card">
     <div class="search-row">
       <div class="field-group">
@@ -507,15 +235,11 @@
           <option value="Registered Nurse">
           <option value="Financial Analyst">
           <option value="UX Designer">
-          <option value="Project Manager">
-          <option value="Sales Manager">
-          <option value="Operations Manager">
-          <option value="Teacher">
-          <option value="Accountant">
           <option value="DevOps Engineer">
-          <option value="HR Manager">
+          <option value="Teacher">
           <option value="Physician">
           <option value="Lawyer">
+          <option value="Sales Manager">
         </datalist>
       </div>
       <div class="field-group">
@@ -531,8 +255,6 @@
           <option value="Boston, MA">
           <option value="Denver, CO">
           <option value="Miami, FL">
-          <option value="Atlanta, GA">
-          <option value="Dallas, TX">
           <option value="Remote / National">
         </datalist>
       </div>
@@ -547,10 +269,10 @@
           </select>
         </div>
       </div>
-      <button class="btn-search" onclick="runSearch()">Check Salary →</button>
+      <button class="btn-search" id="search-btn" onclick="runSearch()">✦ Ask AI</button>
     </div>
-    <div class="popular-searches">
-      <span>Popular:</span>
+    <div class="pills-row">
+      <span class="pills-label">Try:</span>
       <div class="pill" onclick="quickSearch('Software Engineer','New York, NY','mid')">SWE · NYC</div>
       <div class="pill" onclick="quickSearch('Registered Nurse','Los Angeles, CA','mid')">Nurse · LA</div>
       <div class="pill" onclick="quickSearch('Product Manager','San Francisco, CA','senior')">PM · SF</div>
@@ -560,364 +282,255 @@
   </div>
 </section>
 
-<!-- RESULTS -->
-<section id="results-section">
-  <div class="ad-unit">Advertisement — Google AdSense (728×90)</div>
-
-  <div class="results-header">
-    <div class="results-title" id="results-title">Loading…</div>
-    <div class="results-meta" id="results-meta"></div>
+<!-- THINKING -->
+<div id="ai-thinking">
+  <div class="thinking-header">
+    <div class="thinking-dot"></div>
+    <div class="thinking-dot"></div>
+    <div class="thinking-dot"></div>
+    <div class="thinking-label">Claude AI is researching live salary data…</div>
   </div>
-
-  <div class="stats-grid">
-    <div class="stat-card">
-      <div class="stat-label">25th Percentile</div>
-      <div class="stat-value" id="stat-p25">—</div>
-      <div class="stat-sub">Entry / lower range</div>
-    </div>
-    <div class="stat-card highlight">
-      <div class="stat-label">Median Salary</div>
-      <div class="stat-value" id="stat-med">—</div>
-      <div class="stat-sub">Most common salary</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">75th Percentile</div>
-      <div class="stat-value" id="stat-p75">—</div>
-      <div class="stat-sub">Top earner range</div>
-    </div>
-  </div>
-
-  <div class="salary-bar-section">
-    <div class="bar-title">Salary breakdown — annual base (USD)</div>
-
-    <div style="margin-bottom:18px">
-      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px">
-        <span>Base Salary</span><span id="bar-base-val">—</span>
-      </div>
-      <div class="bar-track"><div class="bar-fill green" id="bar-base" style="width:0%"></div></div>
-    </div>
-    <div style="margin-bottom:18px">
-      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px">
-        <span>With Annual Bonus</span><span id="bar-bonus-val">—</span>
-      </div>
-      <div class="bar-track"><div class="bar-fill amber" id="bar-bonus" style="width:0%"></div></div>
-    </div>
-    <div>
-      <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-bottom:6px">
-        <span>Total Compensation (incl. equity est.)</span><span id="bar-total-val">—</span>
-      </div>
-      <div class="bar-track"><div class="bar-fill blue" id="bar-total" style="width:0%"></div></div>
-    </div>
-  </div>
-
-  <div class="percentile-viz">
-    <div class="bar-title" style="margin-bottom:20px">Percentile breakdown</div>
-    <div class="pct-row">
-      <div class="pct-label">10th</div>
-      <div class="pct-bar-track"><div class="pct-bar-fill" id="pct10" style="width:0%;background:#d8d3c8"></div></div>
-      <div class="pct-val" id="pct10-val">—</div>
-    </div>
-    <div class="pct-row">
-      <div class="pct-label">25th</div>
-      <div class="pct-bar-track"><div class="pct-bar-fill" id="pct25" style="width:0%;background:#c8922a"></div></div>
-      <div class="pct-val" id="pct25-val">—</div>
-    </div>
-    <div class="pct-row">
-      <div class="pct-label">50th</div>
-      <div class="pct-bar-track"><div class="pct-bar-fill" id="pct50" style="width:0%"></div></div>
-      <div class="pct-val" id="pct50-val">—</div>
-    </div>
-    <div class="pct-row">
-      <div class="pct-label">75th</div>
-      <div class="pct-bar-track"><div class="pct-bar-fill" id="pct75" style="width:0%;background:#2a6dd4"></div></div>
-      <div class="pct-val" id="pct75-val">—</div>
-    </div>
-    <div class="pct-row">
-      <div class="pct-label">90th</div>
-      <div class="pct-bar-track"><div class="pct-bar-fill" id="pct90" style="width:0%;background:#1a7a4a"></div></div>
-      <div class="pct-val" id="pct90-val">—</div>
-    </div>
-  </div>
-
-  <div class="ad-unit" style="margin-bottom:20px">
-    <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">Looking for a higher-paying job?</div>
-    <div>Sponsored listings from Indeed, LinkedIn, ZipRecruiter — CPC ad placement</div>
-  </div>
-
-  <div class="share-card">
-    <div class="share-text">
-      <h3>Share your result</h3>
-      <p>Find out if your colleagues are in the same range</p>
-    </div>
-    <div class="share-btns">
-      <button class="share-btn" onclick="shareResult('twitter')">Twitter / X</button>
-      <button class="share-btn" onclick="shareResult('linkedin')">LinkedIn</button>
-      <button class="share-btn" onclick="shareResult('reddit')">Reddit</button>
-      <button class="share-btn primary" onclick="copyLink()">Copy Link</button>
-    </div>
-  </div>
-</section>
-
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="strip-item">
-    <div class="strip-num">800+</div>
-    <div class="strip-desc">Job titles covered</div>
-  </div>
-  <div class="strip-item">
-    <div class="strip-num">380</div>
-    <div class="strip-desc">US metro areas</div>
-  </div>
-  <div class="strip-item">
-    <div class="strip-num">2.4M</div>
-    <div class="strip-desc">Data points (BLS 2025)</div>
-  </div>
-  <div class="strip-item">
-    <div class="strip-num">100%</div>
-    <div class="strip-desc">Free, forever</div>
-  </div>
+  <div class="thinking-steps" id="thinking-steps"></div>
 </div>
 
-<!-- HOW IT WORKS -->
-<section class="how-section">
-  <div class="section-eyebrow">How it works</div>
-  <div class="section-title">Real data. Instant results.<br>No games.</div>
-  <div class="steps">
-    <div class="step">
-      <div class="step-num">01</div>
-      <h3>Type your job title</h3>
-      <p>We match against 800+ standardized occupational classifications, the same ones the BLS tracks.</p>
+<!-- ERROR -->
+<div class="error-card" id="error-card">
+  <strong>⚠️ Error:</strong> <span id="error-msg"></span>
+</div>
+
+<!-- RESULTS -->
+<section id="results-section">
+  <div style="padding-top:32px">
+    <div class="ad-unit">Advertisement · Google AdSense</div>
+
+    <div class="ai-response-card">
+      <div class="ai-header">
+        <div class="ai-avatar">✦</div>
+        <div>
+          <div class="ai-label">Claude AI · Salary Intelligence</div>
+          <div class="ai-sublabel" id="ai-query-label">Real-time web research</div>
+        </div>
+      </div>
+
+      <div class="salary-hero">
+        <div class="salary-stat">
+          <div class="stat-label">25th Percentile</div>
+          <div class="stat-amount" id="stat-p25">—</div>
+          <div class="stat-note">Lower range</div>
+        </div>
+        <div class="salary-stat main">
+          <div class="stat-label">Median Salary</div>
+          <div class="stat-amount" id="stat-med">—</div>
+          <div class="stat-note">Most common</div>
+        </div>
+        <div class="salary-stat">
+          <div class="stat-label">75th Percentile</div>
+          <div class="stat-amount" id="stat-p75">—</div>
+          <div class="stat-note">Top earner range</div>
+        </div>
+      </div>
+
+      <div class="comp-row">
+        <div class="comp-chip">
+          <div class="comp-chip-label">With Bonus</div>
+          <div class="comp-chip-val" id="stat-bonus">—</div>
+        </div>
+        <div class="comp-chip">
+          <div class="comp-chip-label">Total Comp</div>
+          <div class="comp-chip-val green" id="stat-total">—</div>
+        </div>
+        <div class="comp-chip">
+          <div class="comp-chip-label">YoY Growth</div>
+          <div class="comp-chip-val green" id="stat-growth">—</div>
+        </div>
+      </div>
+
+      <div class="pct-section">
+        <div class="pct-title">Full percentile breakdown</div>
+        <div class="pct-row"><div class="pct-lbl">10th</div><div class="pct-track"><div class="pct-fill" id="pct10" style="background:#d8d3c8"></div></div><div class="pct-val" id="pct10-val">—</div></div>
+        <div class="pct-row"><div class="pct-lbl">25th</div><div class="pct-track"><div class="pct-fill" id="pct25" style="background:#c8922a"></div></div><div class="pct-val" id="pct25-val">—</div></div>
+        <div class="pct-row"><div class="pct-lbl">50th</div><div class="pct-track"><div class="pct-fill" id="pct50" style="background:#d45a2a"></div></div><div class="pct-val" id="pct50-val">—</div></div>
+        <div class="pct-row"><div class="pct-lbl">75th</div><div class="pct-track"><div class="pct-fill" id="pct75" style="background:#2a6dd4"></div></div><div class="pct-val" id="pct75-val">—</div></div>
+        <div class="pct-row"><div class="pct-lbl">90th</div><div class="pct-track"><div class="pct-fill" id="pct90" style="background:#1a7a4a"></div></div><div class="pct-val" id="pct90-val">—</div></div>
+      </div>
+
+      <div class="ai-narrative" id="ai-narrative"></div>
+
+      <div class="sources-row" id="sources-row">
+        <span class="sources-label">Sources</span>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-num">02</div>
-      <h3>Pick your city</h3>
-      <p>Salaries vary dramatically by location. We apply real cost-of-labor adjustments for 380 US metro areas.</p>
+
+    <div class="share-card">
+      <div class="share-text">
+        <h3>Share your result</h3>
+        <p>Find out if your colleagues are paid fairly</p>
+      </div>
+      <div class="share-btns">
+        <button class="share-btn" onclick="shareResult('twitter')">Twitter / X</button>
+        <button class="share-btn" onclick="shareResult('linkedin')">LinkedIn</button>
+        <button class="share-btn" onclick="shareResult('reddit')">Reddit</button>
+        <button class="share-btn primary" onclick="copyLink()">Copy Link</button>
+      </div>
     </div>
-    <div class="step">
-      <div class="step-num">03</div>
-      <h3>Get your benchmark</h3>
-      <p>Instant percentile breakdown so you know exactly where you stand — and what to ask for at your next review.</p>
+
+    <div class="ad-unit">
+      <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">Looking for a better-paying role?</div>
+      Sponsored listings · Indeed / ZipRecruiter
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="logo" style="font-size:17px">SalaryCheck<span class="dot">.</span></div>
-  <div>Data source: US Bureau of Labor Statistics (BLS) Occupational Employment Survey · Updated Q1 2025</div>
-  <div style="display:flex;gap:20px">
-    <a href="#">Privacy</a>
-    <a href="#">Methodology</a>
-    <a href="#">About</a>
+<div class="stats-strip">
+  <div class="strip-item"><div class="strip-num">800+</div><div class="strip-desc">Job titles</div></div>
+  <div class="strip-item"><div class="strip-num">Live</div><div class="strip-desc">AI web research</div></div>
+  <div class="strip-item"><div class="strip-num">100%</div><div class="strip-desc">Free forever</div></div>
+  <div class="strip-item"><div class="strip-num">0</div><div class="strip-desc">Signups needed</div></div>
+</div>
+
+<section class="how-section" id="how">
+  <div class="section-eyebrow">How it works</div>
+  <div class="section-title">Real AI. Real data.<br>Real time.</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><h3>You ask</h3><p>Type any job title, city and experience level. Our AI understands any role — no rigid categories.</p></div>
+    <div class="step"><div class="step-num">02</div><h3>Claude searches live</h3><p>Claude AI queries BLS, Glassdoor, LinkedIn, Indeed and Levels.fyi in real time and synthesizes the most current data.</p></div>
+    <div class="step"><div class="step-num">03</div><h3>You get intelligence</h3><p>A full salary breakdown with percentiles, total comp, market trends and negotiation insights.</p></div>
   </div>
+</section>
+
+<footer>
+  <div class="logo" style="font-size:17px">CheckSalary<span class="dot">.</span></div>
+  <div>Powered by Claude AI · Real-time data · Free forever</div>
+  <div style="display:flex;gap:20px"><a href="#">Privacy</a><a href="#">About</a></div>
 </footer>
 
 <script>
-// ── Salary data model ──
-// Realistic BLS-based data for popular roles. In production, this comes from BLS API.
-const SALARY_DB = {
-  "software engineer": {
-    base: { "new york, ny": 145000, "san francisco, ca": 165000, "los angeles, ca": 135000, "seattle, wa": 155000, "chicago, il": 118000, "austin, tx": 125000, "boston, ma": 138000, "denver, co": 120000, "miami, fl": 105000, "remote / national": 130000, "default": 115000 },
-    expMult: { entry: 0.72, mid: 1.0, senior: 1.35, lead: 1.62 },
-    bonusPct: 0.12, equityPct: 0.20
-  },
-  "product manager": {
-    base: { "new york, ny": 148000, "san francisco, ca": 168000, "los angeles, ca": 132000, "seattle, wa": 148000, "chicago, il": 115000, "austin, tx": 120000, "boston, ma": 135000, "denver, co": 116000, "remote / national": 128000, "default": 112000 },
-    expMult: { entry: 0.70, mid: 1.0, senior: 1.38, lead: 1.65 },
-    bonusPct: 0.15, equityPct: 0.18
-  },
-  "data scientist": {
-    base: { "new york, ny": 138000, "san francisco, ca": 158000, "seattle, wa": 148000, "chicago, il": 112000, "austin, tx": 118000, "boston, ma": 132000, "remote / national": 125000, "default": 108000 },
-    expMult: { entry: 0.74, mid: 1.0, senior: 1.32, lead: 1.58 },
-    bonusPct: 0.10, equityPct: 0.15
-  },
-  "registered nurse": {
-    base: { "new york, ny": 95000, "san francisco, ca": 118000, "los angeles, ca": 108000, "chicago, il": 82000, "seattle, wa": 98000, "miami, fl": 72000, "boston, ma": 88000, "denver, co": 78000, "default": 75000 },
-    expMult: { entry: 0.80, mid: 1.0, senior: 1.22, lead: 1.40 },
-    bonusPct: 0.04, equityPct: 0.0
-  },
-  "marketing manager": {
-    base: { "new york, ny": 115000, "san francisco, ca": 125000, "los angeles, ca": 110000, "chicago, il": 98000, "austin, tx": 95000, "boston, ma": 105000, "remote / national": 98000, "default": 90000 },
-    expMult: { entry: 0.68, mid: 1.0, senior: 1.30, lead: 1.55 },
-    bonusPct: 0.14, equityPct: 0.08
-  },
-  "financial analyst": {
-    base: { "new york, ny": 110000, "san francisco, ca": 115000, "chicago, il": 95000, "boston, ma": 98000, "los angeles, ca": 95000, "default": 82000 },
-    expMult: { entry: 0.72, mid: 1.0, senior: 1.32, lead: 1.58 },
-    bonusPct: 0.18, equityPct: 0.05
-  },
-  "ux designer": {
-    base: { "new york, ny": 115000, "san francisco, ca": 132000, "seattle, wa": 118000, "chicago, il": 88000, "austin, tx": 92000, "remote / national": 100000, "default": 82000 },
-    expMult: { entry: 0.70, mid: 1.0, senior: 1.30, lead: 1.50 },
-    bonusPct: 0.08, equityPct: 0.12
-  },
-  "teacher": {
-    base: { "new york, ny": 82000, "san francisco, ca": 78000, "chicago, il": 70000, "los angeles, ca": 75000, "seattle, wa": 68000, "boston, ma": 72000, "miami, fl": 52000, "default": 58000 },
-    expMult: { entry: 0.80, mid: 1.0, senior: 1.20, lead: 1.35 },
-    bonusPct: 0.02, equityPct: 0.0
-  },
-  "devops engineer": {
-    base: { "new york, ny": 138000, "san francisco, ca": 155000, "seattle, wa": 148000, "chicago, il": 112000, "austin, tx": 118000, "remote / national": 128000, "default": 108000 },
-    expMult: { entry: 0.74, mid: 1.0, senior: 1.33, lead: 1.58 },
-    bonusPct: 0.10, equityPct: 0.15
-  },
-  "project manager": {
-    base: { "new york, ny": 115000, "san francisco, ca": 118000, "chicago, il": 95000, "seattle, wa": 108000, "austin, tx": 95000, "remote / national": 98000, "default": 88000 },
-    expMult: { entry: 0.70, mid: 1.0, senior: 1.28, lead: 1.50 },
-    bonusPct: 0.10, equityPct: 0.06
-  },
-  "physician": {
-    base: { "new york, ny": 235000, "san francisco, ca": 258000, "chicago, il": 218000, "boston, ma": 228000, "default": 205000 },
-    expMult: { entry: 0.75, mid: 1.0, senior: 1.25, lead: 1.45 },
-    bonusPct: 0.08, equityPct: 0.0
-  },
-  "lawyer": {
-    base: { "new york, ny": 195000, "san francisco, ca": 210000, "chicago, il": 165000, "washington, dc": 178000, "boston, ma": 172000, "default": 148000 },
-    expMult: { entry: 0.65, mid: 1.0, senior: 1.42, lead: 1.80 },
-    bonusPct: 0.18, equityPct: 0.0
-  },
-};
+const STEPS = [
+  { icon: '🔍', text: 'Searching BLS occupational wage database…' },
+  { icon: '📊', text: 'Cross-referencing Glassdoor & LinkedIn salary data…' },
+  { icon: '🌐', text: 'Scanning Indeed and recent job postings…' },
+  { icon: '📍', text: 'Applying cost-of-labor adjustment for your city…' },
+  { icon: '✦',  text: 'Synthesizing your personalized salary report…' },
+];
 
-function getSalaryData(title, city, exp) {
-  const key = title.toLowerCase().trim();
-  const cityKey = city.toLowerCase().trim();
+function fmt(n) { return n ? '$' + Math.round(n/1000) + 'k' : '—'; }
 
-  // fuzzy match
-  let match = null;
-  for (const k of Object.keys(SALARY_DB)) {
-    if (key.includes(k) || k.includes(key)) { match = k; break; }
-  }
-  // fallback — generate plausible data from partial match
-  const db = match ? SALARY_DB[match] : null;
-
-  let baseMid;
-  if (db) {
-    baseMid = db.base[cityKey] || db.base["default"];
-  } else {
-    // generate from city tier
-    const cityTier = {"new york, ny":1.3,"san francisco, ca":1.45,"seattle, wa":1.25,"boston, ma":1.2,"los angeles, ca":1.18,"chicago, il":1.05,"austin, tx":1.02,"denver, co":1.0,"miami, fl":0.95,"remote / national":1.05};
-    const ct = cityTier[cityKey] || 1.0;
-    baseMid = Math.round(72000 * ct / 1000) * 1000;
-  }
-
-  const expMult = db ? (db.expMult[exp] || 1.0) : { entry:.75, mid:1.0, senior:1.28, lead:1.52 }[exp];
-  const base = Math.round(baseMid * expMult / 1000) * 1000;
-  const bonusPct = db ? db.bonusPct : 0.08;
-  const equityPct = db ? db.equityPct : 0.05;
-
-  return {
-    p10: Math.round(base * 0.78 / 1000) * 1000,
-    p25: Math.round(base * 0.88 / 1000) * 1000,
-    p50: base,
-    p75: Math.round(base * 1.18 / 1000) * 1000,
-    p90: Math.round(base * 1.35 / 1000) * 1000,
-    withBonus: Math.round(base * (1 + bonusPct) / 1000) * 1000,
-    total: Math.round(base * (1 + bonusPct + equityPct) / 1000) * 1000,
-  };
+function showThinking() {
+  const c = document.getElementById('thinking-steps');
+  c.innerHTML = '';
+  STEPS.forEach((s, i) => {
+    const el = document.createElement('div');
+    el.className = 'thinking-step';
+    el.innerHTML = `<span>${s.icon}</span>${s.text}`;
+    c.appendChild(el);
+    setTimeout(() => el.classList.add('visible'), i * 700);
+  });
 }
 
-function fmt(n) {
-  if (n >= 1000) return '$' + (n/1000).toFixed(0) + 'k';
-  return '$' + n.toLocaleString();
-}
-
-function fmtFull(n) {
-  return '$' + n.toLocaleString();
-}
-
-function runSearch() {
+async function runSearch() {
   const title = document.getElementById('job-title').value.trim();
-  const city = document.getElementById('city').value.trim();
-  const exp = document.getElementById('experience').value;
+  const city  = document.getElementById('city').value.trim();
+  const exp   = document.getElementById('experience').value;
   if (!title) { document.getElementById('job-title').focus(); return; }
 
-  const cityLabel = city || 'National Average';
-  const expLabel = {'entry':'Entry Level','mid':'Mid-Level','senior':'Senior','lead':'Lead / Executive'}[exp];
+  // UI state
+  document.getElementById('search-btn').disabled = true;
+  document.getElementById('search-btn').textContent = '…';
+  document.getElementById('results-section').style.display = 'none';
+  document.getElementById('results-section').classList.remove('visible');
+  document.getElementById('error-card').classList.remove('show');
+  document.getElementById('ai-thinking').classList.add('show');
+  showThinking();
+  document.getElementById('ai-thinking').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-  const loader = document.getElementById('loader');
-  loader.classList.add('show');
+  try {
+    // Calls our secure serverless proxy — API key never touches the browser
+    const res = await fetch('/api/salary', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title, city, experience: exp })
+    });
 
-  setTimeout(() => {
-    loader.classList.remove('show');
-    const data = getSalaryData(title, city || 'default', exp);
-    showResults(title, cityLabel, expLabel, data);
-  }, 900);
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Request failed');
+
+    document.getElementById('ai-thinking').classList.remove('show');
+    displayResults(title, city, exp, data);
+
+    // Track in GA
+    gtag('event', 'salary_search', { job_title: title, city: city, experience: exp });
+
+  } catch (err) {
+    document.getElementById('ai-thinking').classList.remove('show');
+    document.getElementById('error-card').classList.add('show');
+    document.getElementById('error-msg').textContent = err.message;
+  } finally {
+    document.getElementById('search-btn').disabled = false;
+    document.getElementById('search-btn').innerHTML = '✦ Ask AI';
+  }
 }
 
-function quickSearch(title, city, exp) {
-  document.getElementById('job-title').value = title;
-  document.getElementById('city').value = city;
-  document.getElementById('experience').value = exp;
-  runSearch();
-}
+function displayResults(title, city, exp, d) {
+  const expLabels = { entry:'Entry Level', mid:'Mid Level', senior:'Senior', lead:'Lead/Executive' };
+  document.getElementById('ai-query-label').textContent = `${title} · ${city || 'US National'} · ${expLabels[exp]}`;
 
-function showResults(title, city, expLabel, d) {
-  // scroll into view
+  document.getElementById('stat-p25').textContent    = fmt(d.p25);
+  document.getElementById('stat-med').textContent    = fmt(d.p50);
+  document.getElementById('stat-p75').textContent    = fmt(d.p75);
+  document.getElementById('stat-bonus').textContent  = fmt(d.withBonus);
+  document.getElementById('stat-total').textContent  = fmt(d.totalComp);
+  document.getElementById('stat-growth').textContent = d.yoyGrowth || '+3–5%';
+
+  const max = d.p90;
+  [['pct10',d.p10,'#d8d3c8'],['pct25',d.p25,'#c8922a'],['pct50',d.p50,'#d45a2a'],['pct75',d.p75,'#2a6dd4'],['pct90',d.p90,'#1a7a4a']].forEach(([id,val,color]) => {
+    document.getElementById(id+'-val').textContent = fmt(val);
+    document.getElementById(id).style.background = color;
+    setTimeout(() => { document.getElementById(id).style.width = (val/max*88)+'%'; }, 200);
+  });
+
+  if (d.narrative) {
+    document.getElementById('ai-narrative').innerHTML =
+      d.narrative.split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('');
+  }
+
+  if (d.sources?.length) {
+    document.getElementById('sources-row').innerHTML =
+      '<span class="sources-label">Sources</span>' +
+      d.sources.map(s=>`<span class="source-chip">${s}</span>`).join('');
+  }
+
+  window._lastResult = { title, city, median: fmt(d.p50) };
+
   const sec = document.getElementById('results-section');
   sec.style.display = 'block';
   void sec.offsetWidth;
   sec.classList.add('visible');
   sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-
-  document.getElementById('results-title').innerHTML = `<em>${title}</em> · ${city}`;
-  document.getElementById('results-meta').textContent = `${expLabel} · Based on BLS 2025 data · Updated Q1 2025`;
-
-  document.getElementById('stat-p25').textContent = fmt(d.p25);
-  document.getElementById('stat-med').textContent = fmt(d.p50);
-  document.getElementById('stat-p75').textContent = fmt(d.p75);
-
-  // bars
-  const maxTotal = d.total;
-  document.getElementById('bar-base-val').textContent = fmtFull(d.p50);
-  document.getElementById('bar-bonus-val').textContent = fmtFull(d.withBonus);
-  document.getElementById('bar-total-val').textContent = fmtFull(d.total);
-
-  setTimeout(() => {
-    document.getElementById('bar-base').style.width = (d.p50 / maxTotal * 85) + '%';
-    document.getElementById('bar-bonus').style.width = (d.withBonus / maxTotal * 85) + '%';
-    document.getElementById('bar-total').style.width = '85%';
-  }, 100);
-
-  // percentiles
-  const pcts = [['pct10', d.p10], ['pct25', d.p25], ['pct50', d.p50], ['pct75', d.p75], ['pct90', d.p90]];
-  pcts.forEach(([id, val]) => {
-    document.getElementById(id + '-val').textContent = fmt(val);
-    setTimeout(() => {
-      document.getElementById(id).style.width = (val / d.p90 * 90) + '%';
-    }, 150);
-  });
-
-  // store for share
-  window._lastResult = { title, city, expLabel, median: fmt(d.p50) };
 }
 
-function shareResult(platform) {
+function quickSearch(t, c, e) {
+  document.getElementById('job-title').value = t;
+  document.getElementById('city').value = c;
+  document.getElementById('experience').value = e;
+  runSearch();
+}
+
+function shareResult(p) {
   const r = window._lastResult;
   if (!r) return;
-  const text = encodeURIComponent(`Just looked up ${r.title} salary in ${r.city} on SalaryCheck — median is ${r.median}. Are you being paid what you're worth?`);
-  const url = encodeURIComponent('https://salarycheck.app');
-  const links = {
-    twitter: `https://twitter.com/intent/tweet?text=${text}&url=${url}`,
-    linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-    reddit: `https://reddit.com/submit?url=${url}&title=${text}`
-  };
-  window.open(links[platform], '_blank');
+  const text = encodeURIComponent(`Just checked ${r.title} salary in ${r.city} on CheckSalary.us — median is ${r.median}. Are you being paid what you're worth?`);
+  const url = encodeURIComponent('https://checksalary.us');
+  window.open({ twitter:`https://twitter.com/intent/tweet?text=${text}&url=${url}`, linkedin:`https://www.linkedin.com/sharing/share-offsite/?url=${url}`, reddit:`https://reddit.com/submit?url=${url}&title=${text}` }[p], '_blank');
 }
 
 function copyLink() {
-  navigator.clipboard.writeText('https://salarycheck.app').then(() => {
-    const btn = event.target;
-    btn.textContent = 'Copied!';
-    setTimeout(() => btn.textContent = 'Copy Link', 2000);
+  navigator.clipboard.writeText('https://checksalary.us').then(() => {
+    event.target.textContent = 'Copied!';
+    setTimeout(() => event.target.textContent = 'Copy Link', 2000);
   });
 }
 
-// Enter key on inputs
-['job-title','city'].forEach(id => {
-  document.getElementById(id).addEventListener('keydown', e => {
-    if (e.key === 'Enter') runSearch();
-  });
-});
+['job-title','city'].forEach(id => document.getElementById(id).addEventListener('keydown', e => { if(e.key==='Enter') runSearch(); }));
 </script>
 </body>
 </html>
