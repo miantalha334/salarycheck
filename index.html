@@ -35,8 +35,7 @@
     padding: 18px 48px; border-bottom: 1px solid var(--border);
     background: var(--paper); position: sticky; top: 0; z-index: 100;
   }
-.logo { display: flex; align-items: center; gap: 10px; }
-.logo .dot { color: var(--accent); font-style: italic; }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .ai-badge {
     display: inline-flex; align-items: center; gap: 5px; font-size: 11px;
     font-weight: 600; letter-spacing: 0.5px; background: #f0ede6;
@@ -186,8 +185,19 @@
   .step h3 { font-size: 16px; font-weight: 600; margin-bottom: 6px; }
   .step p { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
+  .popular-pages { max-width: 900px; margin: 0 auto; padding: 40px 24px; border-top: 1px solid var(--border); }
+  .popular-pages-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 16px; }
+  .popular-pages-links { display: flex; flex-wrap: wrap; gap: 12px; }
+  .popular-pages-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color .15s; }
+  .popular-pages-links a:hover { color: var(--accent); }
+
   footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
   footer a { color: var(--muted); text-decoration: none; }
+
+  .footer-logo { display: flex; align-items: center; gap: 10px; }
+  .footer-logo-text { line-height: 1; }
+  .footer-logo-text .line1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; color: #0f0e0d; }
+  .footer-logo-text .line2 { font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; color: #d45a2a; font-style: italic; }
 
   @media (max-width: 700px) {
     header { padding: 14px 20px; }
@@ -204,21 +214,22 @@
 </head>
 <body>
 
+<!-- HEADER -->
 <header>
   <div style="display:flex;align-items:center;gap:12px">
-<div class="logo" style="display:flex;align-items:center;gap:10px">
-  <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="22" cy="22" r="22" fill="#d45a2a"/>
-    <rect x="10" y="28" width="5" height="10" rx="1.5" fill="white" opacity="0.6"/>
-    <rect x="18" y="22" width="5" height="16" rx="1.5" fill="white" opacity="0.85"/>
-    <rect x="26" y="15" width="5" height="23" rx="1.5" fill="white"/>
-    <path d="M28.5 11 L28.5 5 M25.5 8 L28.5 5 L31.5 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <div>
-    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;line-height:1.1;color:#0f0e0d">Check</div>
-    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;line-height:1.1;color:#d45a2a;font-style:italic">Salary</div>
-  </div>
-</div>
+    <a class="logo" href="/">
+      <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="22" cy="22" r="22" fill="#d45a2a"/>
+        <rect x="10" y="28" width="5" height="10" rx="1.5" fill="white" opacity="0.6"/>
+        <rect x="18" y="22" width="5" height="16" rx="1.5" fill="white" opacity="0.85"/>
+        <rect x="26" y="15" width="5" height="23" rx="1.5" fill="white"/>
+        <path d="M28.5 11 L28.5 5 M25.5 8 L28.5 5 L31.5 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="line-height:1.1">
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#0f0e0d">Check</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#d45a2a;font-style:italic">Salary</div>
+      </div>
+    </a>
     <div class="ai-badge">✦ AI Powered</div>
   </div>
   <nav>
@@ -228,6 +239,7 @@
   </nav>
 </header>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-badge"><span class="pulse"></span> Live AI · Real-time salary data</div>
   <h1>Know exactly what<br>you're <em>worth</em> — right now.</h1>
@@ -314,7 +326,6 @@
 <section id="results-section">
   <div style="padding-top:32px">
     <div class="ad-unit">Advertisement · Google AdSense</div>
-
     <div class="ai-response-card">
       <div class="ai-header">
         <div class="ai-avatar">✦</div>
@@ -323,7 +334,6 @@
           <div class="ai-sublabel" id="ai-query-label">Real-time web research</div>
         </div>
       </div>
-
       <div class="salary-hero">
         <div class="salary-stat">
           <div class="stat-label">25th Percentile</div>
@@ -341,7 +351,6 @@
           <div class="stat-note">Top earner range</div>
         </div>
       </div>
-
       <div class="comp-row">
         <div class="comp-chip">
           <div class="comp-chip-label">With Bonus</div>
@@ -356,7 +365,6 @@
           <div class="comp-chip-val green" id="stat-growth">—</div>
         </div>
       </div>
-
       <div class="pct-section">
         <div class="pct-title">Full percentile breakdown</div>
         <div class="pct-row"><div class="pct-lbl">10th</div><div class="pct-track"><div class="pct-fill" id="pct10" style="background:#d8d3c8"></div></div><div class="pct-val" id="pct10-val">—</div></div>
@@ -365,14 +373,11 @@
         <div class="pct-row"><div class="pct-lbl">75th</div><div class="pct-track"><div class="pct-fill" id="pct75" style="background:#2a6dd4"></div></div><div class="pct-val" id="pct75-val">—</div></div>
         <div class="pct-row"><div class="pct-lbl">90th</div><div class="pct-track"><div class="pct-fill" id="pct90" style="background:#1a7a4a"></div></div><div class="pct-val" id="pct90-val">—</div></div>
       </div>
-
       <div class="ai-narrative" id="ai-narrative"></div>
-
       <div class="sources-row" id="sources-row">
         <span class="sources-label">Sources</span>
       </div>
     </div>
-
     <div class="share-card">
       <div class="share-text">
         <h3>Share your result</h3>
@@ -385,7 +390,6 @@
         <button class="share-btn primary" onclick="copyLink()">Copy Link</button>
       </div>
     </div>
-
     <div class="ad-unit">
       <div style="font-size:13px;font-weight:600;color:var(--ink);margin-bottom:4px">Looking for a better-paying role?</div>
       Sponsored listings · Indeed / ZipRecruiter
@@ -393,6 +397,7 @@
   </div>
 </section>
 
+<!-- STATS STRIP -->
 <div class="stats-strip">
   <div class="strip-item"><div class="strip-num">800+</div><div class="strip-desc">Job titles</div></div>
   <div class="strip-item"><div class="strip-num">Live</div><div class="strip-desc">AI web research</div></div>
@@ -400,6 +405,7 @@
   <div class="strip-item"><div class="strip-num">0</div><div class="strip-desc">Signups needed</div></div>
 </div>
 
+<!-- HOW IT WORKS -->
 <section class="how-section" id="how">
   <div class="section-eyebrow">How it works</div>
   <div class="section-title">Real AI. Real data.<br>Real time.</div>
@@ -409,36 +415,45 @@
     <div class="step"><div class="step-num">03</div><h3>You get intelligence</h3><p>A full salary breakdown with percentiles, total comp, market trends and negotiation insights.</p></div>
   </div>
 </section>
-<div style="max-width:900px;margin:0 auto;padding:40px 24px;border-top:1px solid var(--border)">
-  <p style="font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:16px">Popular Salary Pages</p>
-  <div style="display:flex;flex-wrap:wrap;gap:12px">
-    <a href="/software-engineer-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Software Engineer · NYC</a>
-    <a href="/registered-nurse-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Registered Nurse · NYC</a>
-    <a href="/product-manager-salary-san-francisco" style="font-size:13px;color:var(--muted);text-decoration:none;">Product Manager · SF</a>
-    <a href="/data-scientist-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Data Scientist · NYC</a>
-    <a href="/teacher-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Teacher · NYC</a>
-    <a href="/lawyer-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Lawyer · NYC</a>
-    <a href="/financial-analyst-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Financial Analyst · NYC</a>
-    <a href="/devops-engineer-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">DevOps Engineer · NYC</a>
-    <a href="/physician-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Physician · NYC</a>
-    <a href="/marketing-manager-salary-new-york" style="font-size:13px;color:var(--muted);text-decoration:none;">Marketing Manager · NYC</a>
+
+<!-- POPULAR PAGES — SEO internal linking -->
+<div class="popular-pages">
+  <div class="popular-pages-label">Popular Salary Pages</div>
+  <div class="popular-pages-links">
+    <a href="/software-engineer-salary-new-york">Software Engineer · NYC</a>
+    <a href="/registered-nurse-salary-new-york">Registered Nurse · NYC</a>
+    <a href="/product-manager-salary-san-francisco">Product Manager · SF</a>
+    <a href="/data-scientist-salary-new-york">Data Scientist · NYC</a>
+    <a href="/teacher-salary-new-york">Teacher · NYC</a>
+    <a href="/lawyer-salary-new-york">Lawyer · NYC</a>
+    <a href="/financial-analyst-salary-new-york">Financial Analyst · NYC</a>
+    <a href="/devops-engineer-salary-new-york">DevOps Engineer · NYC</a>
+    <a href="/physician-salary-new-york">Physician · NYC</a>
+    <a href="/marketing-manager-salary-new-york">Marketing Manager · NYC</a>
   </div>
 </div>
+
+<!-- FOOTER -->
 <footer>
-<div class="logo" style="display:flex;align-items:center;gap:10px;text-decoration:none">
-  <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="22" cy="22" r="22" fill="#d45a2a"/>
-    <rect x="10" y="28" width="5" height="10" rx="1.5" fill="white" opacity="0.6"/>
-    <rect x="18" y="22" width="5" height="16" rx="1.5" fill="white" opacity="0.85"/>
-    <rect x="26" y="15" width="5" height="23" rx="1.5" fill="white"/>
-    <path d="M28.5 11 L28.5 5 M25.5 8 L28.5 5 L31.5 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <div style="line-height:1">
-    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#0f0e0d">Check</div>
-    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#d45a2a;font-style:italic">Salary</div>
+  <div class="footer-logo">
+    <svg width="32" height="32" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22" cy="22" r="22" fill="#d45a2a"/>
+      <rect x="10" y="28" width="5" height="10" rx="1.5" fill="white" opacity="0.6"/>
+      <rect x="18" y="22" width="5" height="16" rx="1.5" fill="white" opacity="0.85"/>
+      <rect x="26" y="15" width="5" height="23" rx="1.5" fill="white"/>
+      <path d="M28.5 11 L28.5 5 M25.5 8 L28.5 5 L31.5 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div class="footer-logo-text">
+      <div class="line1">Check</div>
+      <div class="line2">Salary</div>
+    </div>
   </div>
-</div>  <div>Powered by Claude AI · Real-time data · Free forever</div>
-<div style="display:flex;gap:20px"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="#">About</a></div>
+  <div>Powered by Claude AI · Real-time data · Free forever</div>
+  <div style="display:flex;gap:20px">
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="#">About</a>
+  </div>
 </footer>
 
 <script>
@@ -470,7 +485,6 @@ async function runSearch() {
   const exp   = document.getElementById('experience').value;
   if (!title) { document.getElementById('job-title').focus(); return; }
 
-  // UI state
   document.getElementById('search-btn').disabled = true;
   document.getElementById('search-btn').textContent = '…';
   document.getElementById('results-section').style.display = 'none';
@@ -481,26 +495,20 @@ async function runSearch() {
   document.getElementById('ai-thinking').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   try {
-    // Calls our secure serverless proxy — API key never touches the browser
     const res = await fetch('/api/salary', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ title, city, experience: exp })
     });
-
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Request failed');
-
     document.getElementById('ai-thinking').classList.remove('show');
     displayResults(title, city, exp, data);
-
-    // Track in GA
     gtag('event', 'salary_search', { job_title: title, city: city, experience: exp });
-
   } catch (err) {
     document.getElementById('ai-thinking').classList.remove('show');
     document.getElementById('error-card').classList.add('show');
-    document.getElementById('error-msg').textContent = err.message;
+    document.getElementById('error-msg').textContent = 'Something went wrong. Please try again.';
   } finally {
     document.getElementById('search-btn').disabled = false;
     document.getElementById('search-btn').innerHTML = '✦ Ask AI';
@@ -510,12 +518,11 @@ async function runSearch() {
 function displayResults(title, city, exp, d) {
   const expLabels = { entry:'Entry Level', mid:'Mid Level', senior:'Senior', lead:'Lead/Executive' };
   document.getElementById('ai-query-label').textContent = `${title} · ${city || 'US National'} · ${expLabels[exp]}`;
-
-  document.getElementById('stat-p25').textContent    = fmt(d.p25);
-  document.getElementById('stat-med').textContent    = fmt(d.p50);
-  document.getElementById('stat-p75').textContent    = fmt(d.p75);
-  document.getElementById('stat-bonus').textContent  = fmt(d.withBonus);
-  document.getElementById('stat-total').textContent  = fmt(d.totalComp);
+  document.getElementById('stat-p25').textContent   = fmt(d.p25);
+  document.getElementById('stat-med').textContent   = fmt(d.p50);
+  document.getElementById('stat-p75').textContent   = fmt(d.p75);
+  document.getElementById('stat-bonus').textContent = fmt(d.withBonus);
+  document.getElementById('stat-total').textContent = fmt(d.totalComp);
   document.getElementById('stat-growth').textContent = d.yoyGrowth || '+3–5%';
 
   const max = d.p90;
@@ -529,7 +536,6 @@ function displayResults(title, city, exp, d) {
     document.getElementById('ai-narrative').innerHTML =
       d.narrative.split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('');
   }
-
   if (d.sources?.length) {
     document.getElementById('sources-row').innerHTML =
       '<span class="sources-label">Sources</span>' +
@@ -537,7 +543,6 @@ function displayResults(title, city, exp, d) {
   }
 
   window._lastResult = { title, city, median: fmt(d.p50) };
-
   const sec = document.getElementById('results-section');
   sec.style.display = 'block';
   void sec.offsetWidth;
