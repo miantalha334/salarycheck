@@ -3,8 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CheckSalary.us — Free AI Salary Intelligence</title>
-<meta name="description" content="Instantly check any US salary with AI. Real-time data from BLS, Glassdoor, LinkedIn. Free, no signup.">
+<title>CheckSalary.us — Free AI Salary Intelligence for US Jobs (2025)</title>
+<meta name="description" content="Free AI salary benchmarking for US jobs. Check any job title + city and instantly see your salary percentile, total comp, and negotiation tips. No signup needed.">
+
+<!-- Open Graph -->
+<meta property="og:title" content="CheckSalary.us — Free AI Salary Benchmarking">
+<meta property="og:description" content="Instantly check any US salary. Real-time AI data from BLS, Glassdoor, LinkedIn. Free forever. No signup.">
+<meta property="og:url" content="https://checksalary.us/">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CheckSalary.us — Are You Being Paid What You're Worth?">
+<meta name="twitter:description" content="Free AI salary tool. Type any job title + city → instant salary percentile breakdown. No signup.">
+
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CheckSalary.us",
+  "url": "https://checksalary.us",
+  "description": "Free AI-powered salary benchmarking tool for US jobs. Instantly check any job title and city for salary percentile breakdown, total compensation, and negotiation tips.",
+  "applicationCategory": "FinanceApplication",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "provider": { "@type": "Organization", "name": "CheckSalary.us", "url": "https://checksalary.us" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How much does a Software Engineer make in the US?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The median Software Engineer salary in the US is $124,000 per year. Salaries range from $89,000 at the 10th percentile to $171,000 at the 90th percentile depending on location and experience." }
+    },
+    {
+      "@type": "Question",
+      "name": "How much does a Registered Nurse make in the US?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The median Registered Nurse salary in the US is $82,000 per year. Salaries range from $62,000 to $112,000 depending on specialty, location, and experience level." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is CheckSalary.us free to use?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. CheckSalary.us is completely free with no signup required. Simply enter your job title, city, and experience level to get an instant salary breakdown." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does CheckSalary.us get its salary data?",
+      "acceptedAnswer": { "@type": "Answer", "text": "CheckSalary.us uses Claude AI to research real-time salary data from the US Bureau of Labor Statistics (BLS), Glassdoor, LinkedIn Salary, and Indeed — giving you the most current market rates." }
+    }
+  ]
+}
+</script>
+
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EXPTL1943Q"></script>
 <script>
@@ -29,31 +83,16 @@
   html { scroll-behavior: smooth; }
   body { font-family: var(--sans); background: var(--paper); color: var(--ink); min-height: 100vh; overflow-x: hidden; }
 
-  /* HEADER */
-  header {
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 18px 48px; border-bottom: 1px solid var(--border);
-    background: var(--paper); position: sticky; top: 0; z-index: 100;
-  }
+  header { display: flex; align-items: center; justify-content: space-between; padding: 18px 48px; border-bottom: 1px solid var(--border); background: var(--paper); position: sticky; top: 0; z-index: 100; }
   .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .ai-badge {
-    display: inline-flex; align-items: center; gap: 5px; font-size: 11px;
-    font-weight: 600; letter-spacing: 0.5px; background: #f0ede6;
-    border: 1px solid var(--border); color: var(--accent); padding: 4px 10px; border-radius: 20px;
-  }
+  .ai-badge { display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; background: #f0ede6; border: 1px solid var(--border); color: var(--accent); padding: 4px 10px; border-radius: 20px; }
   nav { display: flex; gap: 24px; align-items: center; }
   nav a { font-size: 14px; color: var(--muted); text-decoration: none; transition: color .2s; }
   nav a:hover { color: var(--ink); }
   .nav-cta { background: var(--ink); color: var(--paper) !important; padding: 8px 18px; border-radius: 40px; font-weight: 500 !important; font-size: 13px !important; }
 
-  /* HERO */
   .hero { max-width: 900px; margin: 0 auto; padding: 72px 24px 40px; text-align: center; }
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px; font-size: 12px;
-    font-weight: 500; color: var(--accent); background: rgba(212,90,42,0.07);
-    border: 1px solid rgba(212,90,42,0.18); padding: 6px 16px; border-radius: 40px;
-    margin-bottom: 28px; letter-spacing: 0.3px;
-  }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 500; color: var(--accent); background: rgba(212,90,42,0.07); border: 1px solid rgba(212,90,42,0.18); padding: 6px 16px; border-radius: 40px; margin-bottom: 28px; letter-spacing: 0.3px; }
   .pulse { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s infinite; display: inline-block; }
   @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
   h1 { font-family: var(--serif); font-size: clamp(40px,6vw,66px); line-height: 1.05; letter-spacing: -1px; margin-bottom: 18px; }
@@ -63,33 +102,16 @@
   .powered-by strong { color: var(--ink); font-weight: 600; }
   .powered-by::before, .powered-by::after { content: "—"; color: var(--border); }
 
-  /* SEARCH CARD */
-  .search-card {
-    background: #fff; border: 1px solid var(--border); border-radius: 20px;
-    padding: 28px 28px 20px; box-shadow: 0 4px 40px rgba(0,0,0,0.07);
-    max-width: 760px; margin: 0 auto;
-  }
+  .search-card { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 28px 28px 20px; box-shadow: 0 4px 40px rgba(0,0,0,0.07); max-width: 760px; margin: 0 auto; }
   .search-row { display: grid; grid-template-columns: 1fr 1fr 130px 1fr; gap: 12px; align-items: end; margin-bottom: 16px; }
   .field-group { display: flex; flex-direction: column; gap: 6px; }
   .field-group label { font-size: 11px; font-weight: 600; letter-spacing: 0.6px; text-transform: uppercase; color: var(--muted); }
-  .field-group input, .field-group select {
-    font-family: var(--sans); font-size: 15px; color: var(--ink);
-    background: var(--paper); border: 1.5px solid var(--border);
-    border-radius: 10px; padding: 12px 14px; outline: none;
-    transition: border-color .2s, box-shadow .2s; appearance: none;
-  }
-  .field-group input:focus, .field-group select:focus {
-    border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,90,42,0.1); background: #fff;
-  }
+  .field-group input, .field-group select { font-family: var(--sans); font-size: 15px; color: var(--ink); background: var(--paper); border: 1.5px solid var(--border); border-radius: 10px; padding: 12px 14px; outline: none; transition: border-color .2s, box-shadow .2s; appearance: none; }
+  .field-group input:focus, .field-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,90,42,0.1); background: #fff; }
   .field-group input::placeholder { color: #b5afa6; }
   .select-wrap { position: relative; }
   .select-wrap::after { content: "▾"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 11px; color: var(--muted); pointer-events: none; }
-  .btn-search {
-    font-family: var(--sans); font-size: 15px; font-weight: 600;
-    background: var(--accent); color: white; border: none; border-radius: 10px;
-    padding: 13px 16px; cursor: pointer; transition: background .2s, transform .1s;
-    white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px;
-  }
+  .btn-search { font-family: var(--sans); font-size: 15px; font-weight: 600; background: var(--accent); color: white; border: none; border-radius: 10px; padding: 13px 16px; cursor: pointer; transition: background .2s, transform .1s; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 6px; }
   .btn-search:hover { background: #c04d22; }
   .btn-search:active { transform: scale(0.98); }
   .btn-search:disabled { background: var(--border); cursor: not-allowed; }
@@ -98,7 +120,16 @@
   .pill { background: var(--paper2); border: 1px solid var(--border); border-radius: 30px; padding: 5px 13px; font-size: 12px; color: var(--ink); cursor: pointer; transition: all .15s; white-space: nowrap; }
   .pill:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
 
-  /* THINKING */
+  /* SEO CONTENT — visible to Google */
+  #seo-content { max-width: 900px; margin: 0 auto; padding: 0 24px 48px; }
+  #seo-content h2 { font-family: var(--serif); font-size: 28px; letter-spacing: -0.5px; margin-bottom: 16px; }
+  #seo-content h3 { font-size: 15px; font-weight: 600; margin: 20px 0 10px; color: var(--muted); }
+  #seo-content p { font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 10px; }
+  #seo-content ul { padding-left: 20px; }
+  #seo-content li { font-size: 14px; line-height: 1.8; color: var(--muted); }
+  #seo-content a { color: var(--accent); text-decoration: none; }
+  #seo-content a:hover { text-decoration: underline; }
+
   #ai-thinking { display: none; max-width: 760px; margin: 24px auto 0; background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
   #ai-thinking.show { display: block; animation: fadeUp .3s ease; }
   .thinking-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
@@ -110,23 +141,15 @@
   .thinking-step { font-size: 13px; color: var(--muted); padding: 8px 12px; background: var(--paper); border-radius: 8px; display: flex; align-items: center; gap: 8px; opacity: 0; transform: translateY(4px); transition: opacity .4s ease, transform .4s ease; }
   .thinking-step.visible { opacity: 1; transform: translateY(0); }
 
-  /* ERROR */
   .error-card { background: #fff3f0; border: 1px solid #f5c4b3; border-radius: 12px; padding: 20px 24px; margin: 20px auto; max-width: 760px; font-size: 14px; color: #8b3a1a; display: none; }
   .error-card.show { display: block; }
 
-  /* RESULTS */
   #results-section { max-width: 900px; margin: 0 auto; padding: 0 24px 80px; display: none; }
   #results-section.visible { display: block; animation: fadeUp .5s ease; }
   @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
 
-  .ai-response-card {
-    background: #fff; border: 1px solid var(--border); border-radius: 16px;
-    padding: 28px; margin-bottom: 20px; position: relative; overflow: hidden;
-  }
-  .ai-response-card::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent2));
-  }
+  .ai-response-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 28px; margin-bottom: 20px; position: relative; overflow: hidden; }
+  .ai-response-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent2)); }
   .ai-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; }
   .ai-avatar { width: 32px; height: 32px; background: var(--ink); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; color: white; flex-shrink: 0; }
   .ai-label { font-size: 13px; font-weight: 600; }
@@ -193,9 +216,7 @@
 
   footer { border-top: 1px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--muted); flex-wrap: wrap; gap: 12px; }
   footer a { color: var(--muted); text-decoration: none; }
-
   .footer-logo { display: flex; align-items: center; gap: 10px; }
-  .footer-logo-text { line-height: 1; }
   .footer-logo-text .line1 { font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; color: #0f0e0d; }
   .footer-logo-text .line2 { font-family: 'Instrument Serif', Georgia, serif; font-size: 18px; color: #d45a2a; font-style: italic; }
 
@@ -214,7 +235,6 @@
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <div style="display:flex;align-items:center;gap:12px">
     <a class="logo" href="/">
@@ -233,19 +253,17 @@
     <div class="ai-badge">✦ AI Powered</div>
   </div>
   <nav>
-    <a href="#">Explore Jobs</a>
+    <a href="/about">About</a>
     <a href="#how">How It Works</a>
-    <a href="#" class="nav-cta">Browse Salaries</a>
+    <a href="/software-engineer-salary-new-york" class="nav-cta">Browse Salaries</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-badge"><span class="pulse"></span> Live AI · Real-time salary data</div>
   <h1>Know exactly what<br>you're <em>worth</em> — right now.</h1>
   <p class="hero-sub">Claude AI searches the web in real time — BLS, Glassdoor, LinkedIn, Indeed — and gives you the most current salary data for any US job. Free. No signup.</p>
   <div class="powered-by">Powered by <strong>Claude AI</strong> with live web search</div>
-
   <div class="search-card">
     <div class="search-row">
       <div class="field-group">
@@ -306,7 +324,25 @@
   </div>
 </section>
 
-<!-- THINKING -->
+<!-- STATIC SEO CONTENT — fully visible, crawlable by Google -->
+<section id="seo-content">
+  <h2>Free US Salary Data — Any Job, Any City</h2>
+  <p>CheckSalary.us provides free salary benchmarking for over 800 US job titles across 380 metropolitan areas. Powered by Claude AI and real-time data from the Bureau of Labor Statistics, Glassdoor, and LinkedIn.</p>
+  <h3>Most searched salaries in 2025</h3>
+  <ul>
+    <li><a href="/software-engineer-salary-new-york">Software Engineer salary New York — $145k median</a></li>
+    <li><a href="/registered-nurse-salary-los-angeles">Registered Nurse salary Los Angeles — $108k median</a></li>
+    <li><a href="/product-manager-salary-san-francisco">Product Manager salary San Francisco — $168k median</a></li>
+    <li><a href="/data-scientist-salary-new-york">Data Scientist salary New York — $138k median</a></li>
+    <li><a href="/teacher-salary-new-york">Teacher salary New York — $82k median</a></li>
+    <li><a href="/financial-analyst-salary-new-york">Financial Analyst salary New York — $110k median</a></li>
+    <li><a href="/devops-engineer-salary-san-francisco">DevOps Engineer salary San Francisco — $158k median</a></li>
+    <li><a href="/lawyer-salary-new-york">Lawyer salary New York — $195k median</a></li>
+    <li><a href="/physician-salary-new-york">Physician salary New York — $235k median</a></li>
+    <li><a href="/marketing-manager-salary-new-york">Marketing Manager salary New York — $115k median</a></li>
+  </ul>
+</section>
+
 <div id="ai-thinking">
   <div class="thinking-header">
     <div class="thinking-dot"></div>
@@ -317,12 +353,10 @@
   <div class="thinking-steps" id="thinking-steps"></div>
 </div>
 
-<!-- ERROR -->
 <div class="error-card" id="error-card">
   <strong>⚠️ Error:</strong> <span id="error-msg"></span>
 </div>
 
-<!-- RESULTS -->
 <section id="results-section">
   <div style="padding-top:32px">
     <div class="ad-unit">Advertisement · Google AdSense</div>
@@ -335,35 +369,14 @@
         </div>
       </div>
       <div class="salary-hero">
-        <div class="salary-stat">
-          <div class="stat-label">25th Percentile</div>
-          <div class="stat-amount" id="stat-p25">—</div>
-          <div class="stat-note">Lower range</div>
-        </div>
-        <div class="salary-stat main">
-          <div class="stat-label">Median Salary</div>
-          <div class="stat-amount" id="stat-med">—</div>
-          <div class="stat-note">Most common</div>
-        </div>
-        <div class="salary-stat">
-          <div class="stat-label">75th Percentile</div>
-          <div class="stat-amount" id="stat-p75">—</div>
-          <div class="stat-note">Top earner range</div>
-        </div>
+        <div class="salary-stat"><div class="stat-label">25th Percentile</div><div class="stat-amount" id="stat-p25">—</div><div class="stat-note">Lower range</div></div>
+        <div class="salary-stat main"><div class="stat-label">Median Salary</div><div class="stat-amount" id="stat-med">—</div><div class="stat-note">Most common</div></div>
+        <div class="salary-stat"><div class="stat-label">75th Percentile</div><div class="stat-amount" id="stat-p75">—</div><div class="stat-note">Top earner range</div></div>
       </div>
       <div class="comp-row">
-        <div class="comp-chip">
-          <div class="comp-chip-label">With Bonus</div>
-          <div class="comp-chip-val" id="stat-bonus">—</div>
-        </div>
-        <div class="comp-chip">
-          <div class="comp-chip-label">Total Comp</div>
-          <div class="comp-chip-val green" id="stat-total">—</div>
-        </div>
-        <div class="comp-chip">
-          <div class="comp-chip-label">YoY Growth</div>
-          <div class="comp-chip-val green" id="stat-growth">—</div>
-        </div>
+        <div class="comp-chip"><div class="comp-chip-label">With Bonus</div><div class="comp-chip-val" id="stat-bonus">—</div></div>
+        <div class="comp-chip"><div class="comp-chip-label">Total Comp</div><div class="comp-chip-val green" id="stat-total">—</div></div>
+        <div class="comp-chip"><div class="comp-chip-label">YoY Growth</div><div class="comp-chip-val green" id="stat-growth">—</div></div>
       </div>
       <div class="pct-section">
         <div class="pct-title">Full percentile breakdown</div>
@@ -374,15 +387,10 @@
         <div class="pct-row"><div class="pct-lbl">90th</div><div class="pct-track"><div class="pct-fill" id="pct90" style="background:#1a7a4a"></div></div><div class="pct-val" id="pct90-val">—</div></div>
       </div>
       <div class="ai-narrative" id="ai-narrative"></div>
-      <div class="sources-row" id="sources-row">
-        <span class="sources-label">Sources</span>
-      </div>
+      <div class="sources-row" id="sources-row"><span class="sources-label">Sources</span></div>
     </div>
     <div class="share-card">
-      <div class="share-text">
-        <h3>Share your result</h3>
-        <p>Find out if your colleagues are paid fairly</p>
-      </div>
+      <div class="share-text"><h3>Share your result</h3><p>Find out if your colleagues are paid fairly</p></div>
       <div class="share-btns">
         <button class="share-btn" onclick="shareResult('twitter')">Twitter / X</button>
         <button class="share-btn" onclick="shareResult('linkedin')">LinkedIn</button>
@@ -397,7 +405,6 @@
   </div>
 </section>
 
-<!-- STATS STRIP -->
 <div class="stats-strip">
   <div class="strip-item"><div class="strip-num">800+</div><div class="strip-desc">Job titles</div></div>
   <div class="strip-item"><div class="strip-num">Live</div><div class="strip-desc">AI web research</div></div>
@@ -405,7 +412,6 @@
   <div class="strip-item"><div class="strip-num">0</div><div class="strip-desc">Signups needed</div></div>
 </div>
 
-<!-- HOW IT WORKS -->
 <section class="how-section" id="how">
   <div class="section-eyebrow">How it works</div>
   <div class="section-title">Real AI. Real data.<br>Real time.</div>
@@ -416,7 +422,6 @@
   </div>
 </section>
 
-<!-- POPULAR PAGES — SEO internal linking -->
 <div class="popular-pages">
   <div class="popular-pages-label">Popular Salary Pages</div>
   <div class="popular-pages-links">
@@ -433,7 +438,6 @@
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">
     <svg width="32" height="32" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -452,7 +456,7 @@
   <div style="display:flex;gap:20px">
     <a href="/privacy">Privacy</a>
     <a href="/terms">Terms</a>
-    <a href="#">About</a>
+    <a href="/about">About</a>
   </div>
 </footer>
 
@@ -524,24 +528,18 @@ function displayResults(title, city, exp, d) {
   document.getElementById('stat-bonus').textContent = fmt(d.withBonus);
   document.getElementById('stat-total').textContent = fmt(d.totalComp);
   document.getElementById('stat-growth').textContent = d.yoyGrowth || '+3–5%';
-
   const max = d.p90;
   [['pct10',d.p10,'#d8d3c8'],['pct25',d.p25,'#c8922a'],['pct50',d.p50,'#d45a2a'],['pct75',d.p75,'#2a6dd4'],['pct90',d.p90,'#1a7a4a']].forEach(([id,val,color]) => {
     document.getElementById(id+'-val').textContent = fmt(val);
     document.getElementById(id).style.background = color;
     setTimeout(() => { document.getElementById(id).style.width = (val/max*88)+'%'; }, 200);
   });
-
   if (d.narrative) {
-    document.getElementById('ai-narrative').innerHTML =
-      d.narrative.split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('');
+    document.getElementById('ai-narrative').innerHTML = d.narrative.split('\n').filter(p=>p.trim()).map(p=>`<p>${p}</p>`).join('');
   }
   if (d.sources?.length) {
-    document.getElementById('sources-row').innerHTML =
-      '<span class="sources-label">Sources</span>' +
-      d.sources.map(s=>`<span class="source-chip">${s}</span>`).join('');
+    document.getElementById('sources-row').innerHTML = '<span class="sources-label">Sources</span>' + d.sources.map(s=>`<span class="source-chip">${s}</span>`).join('');
   }
-
   window._lastResult = { title, city, median: fmt(d.p50) };
   const sec = document.getElementById('results-section');
   sec.style.display = 'block';
